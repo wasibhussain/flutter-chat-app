@@ -11,6 +11,7 @@ Future<User?> createUser(String name, String email, String password) async {
     User? user = (await _auth.createUserWithEmailAndPassword(
             email: email, password: password))
         .user;
+        user!.updateProfile(displayName: name);
     if (user != null) {
       await _firestore
           .collection('users')
